@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro de Usuários</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true"> 
+
+            <p:layoutUnit  position="center">
+
+                <p:messages  showDetail="false" autoUpdate="true" closable="true"/>
+
+                <h:form>
+
+                    <p:panel header="Criar um novo registro" style="width:450px;height:300px; position: relative; left: 500px;">  
+
+                        <h:panelGrid columns="2" id="grid">  
+
+                            <h:outputLabel style="position: relative; right: 10px" value="Nome : *"/>  
+                            <p:inputText style="position: relative; right: 115px" value="#{usuarioController.usuario.nome}"
+                                         id="txt_title" 
+                                         title="Você deve inserir o nome de um usuário com pelo menos 2 caracteres">
+
+                            </p:inputText>
+                            <p:tooltip for="txt_title" showEvent="focus" hideEvent="blur" /> 
+                            <br/>
+
+                            <h:outputLabel style="position: relative; right: 10px" value="E-mail : *"/>  
+                            <p:inputText style="position: relative; right: 115px" value="#{usuarioController.usuario.email}"
+                                         id="txt_title2" 
+                                         title="Você deve inserir o e-mail de um usuário com pelo menos 2 caracteres">
+
+                            </p:inputText>
+                            <p:tooltip for="txt_title2" showEvent="focus" hideEvent="blur" /> 
+                            <br/>
+
+                            <h:outputLabel style="position: relative; right: 10px" value="Senha : *"/>  
+                            <h:inputSecret style="position: relative; right: 115px" value="#{usuarioController.usuario.senha}"
+                                         id="txt_title3" 
+                                         title="Você deve inserir uma senha com pelo menos 2 caracteres">
+
+                            </h:inputSecret>
+                            <p:tooltip for="txt_title3" showEvent="focus" hideEvent="blur" /> 
+                            <br/>
+
+
+
+                            <p:commandButton style="width: 180px; height: 40px; font-size: small; position: relative; left: 90px" 
+                                             value="Cadastrar Usuário" actionListener="#{usuarioController.salvarNoBanco()}"
+                                             update="grid" ajax="false" icon="ui-icon-disk"> 
+                            </p:commandButton>
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <p:panel style="position: relative;border-color: transparent; top: 30px; text-align: center; right: 38px">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p:commandButton icon="ui-icon-document" style="width: 270px" value="Ver todos os usuarios" ajax="false" action="List" onclick="this.form.target = '_self'"/>
+
+                        <br/>
+                        <br/>
+                        <p:commandButton icon="ui-icon-arrowrefresh-1-w" style="width: 270px" value="Voltar ao índice" ajax="false" action="/index" onclick="this.form.target = '_self'"/>
+
+                    </p:panel>
+
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

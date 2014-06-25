@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Usuários</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="center">
+                <p:messages  showDetail="false" autoUpdate="true" closable="true" />
+
+                <h:form id="form" >
+
+
+
+
+                    <p:panel style="width:610px;height:400px; position: relative; left: 400px; text-align: center; border-color: transparent; background-color: transparent">  
+                        <p:dataTable id="db" var="usuario"  value="#{usuarioController.usuarioDataModel}"
+                                     selection="#{usuarioController.usuario}"
+                                     style="text-align: center" 
+                                     editable="true"
+                                     selectionMode="single"
+                                     paginator="true" rows="5"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowKey="#{usuario.nome}"
+                                     >  
+
+                            <f:facet name="header">  
+                                Lista de Usuários
+                            </f:facet>  
+
+                            <p:column  headerText="id" style="width: 24%">
+                                <f:facet name="header">
+                                    <h:outputText value="id"/>
+                                </f:facet>
+                                <h:outputText value="#{usuario.ID}"/>
+                            </p:column>
+
+                            <p:column  headerText="nome" style="width: 24%">  
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{usuario.nome}"/>
+                            </p:column> 
+
+                            <p:column  headerText="email" style="width: 24%">  
+                                <f:facet name="header">
+                                    <h:outputText value="E-mail"/>
+                                </f:facet>
+                                <h:outputText value="#{usuario.email}"/>
+                            </p:column> 
+                            
+<!--                            <p:column  headerText="senha" style="width: 24%">  
+                                <f:facet name="header">
+                                    <h:outputText value="Senha"/>
+                                </f:facet>
+                                <h:outputText value="#{usuario.senha}"/>
+                            </p:column> 
+
+
+                            <p:column headerText="" style="width: 24%">
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+
+                                <p:commandButton style="width: 95px;height: 30px; font-size: small"
+                                                 action="#{usuarioController.delete()}" value="Deletar" immediate="true" 
+                                                 update="db"  icon="ui-icon-trash"/>
+
+
+                            </p:column>-->
+
+
+<!--                            <p:column headerText="" style="width: 24%">
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+
+                                <p:commandButton style="width: 95px;height: 30px; font-size: small"
+                                                 action="#{usuarioController.prepareEdit()}" value="Editar" immediate="true" 
+                                                 update="db" icon="ui-icon-pencil"/>
+
+
+                            </p:column>-->
+
+<!--                            <p:column headerText="" style="width: 24%">
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+
+                                <p:commandButton style="width: 95px;height: 30px; font-size: small"
+                                                 action="#{usuarioController.prepareView()}" value="Visualizar" immediate="true" 
+                                                 icon="ui-icon-search" />
+
+                            </p:column>-->
+
+
+
+                        </p:dataTable> 
+                    </p:panel>
+
+
+
+                    <p:panel style="position: relative;border-color: transparent; top: 10px; text-align: center; right: 15px">
+<!--                        <br/>
+                        <br/>
+                        <br/>
+                        <p:commandButton icon="ui-icon-disk" style="width: 270px" value="Criar um usuario" ajax="false" action="/view/usuario/Create" onclick="this.form.target = '_self'"/>
+                        <br/>-->
+                        <br/>
+                        <br/>
+                        <p:commandButton icon="ui-icon-arrowrefresh-1-w" style="width: 270px" value="Voltar ao índice" ajax="false" action="/index" onclick="this.form.target = '_self'"/>
+
+                    </p:panel>       
+
+
+
+                </h:form>
+            </p:layoutUnit>
+
+
+        </p:layout>
+
+
+
+
+
+    </h:body>
+</html>

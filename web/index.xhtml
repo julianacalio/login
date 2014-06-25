@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <f:view>
+
+            <h:form style="background-color: transparent">
+
+                <p:growl id="growl" showDetail="true" life="3000" /> 
+
+
+                <p:panel id="conpnl" header="Index"  style="width:280px;height:300px; border-color: transparent; position: relative; left: 530px; text-align: center; background-color: transparent">
+                    <br/>
+
+
+
+                    <p:panelMenu style="width:250px; height: 300px; text-align: justify; position: relative; ">
+                        <p:submenu label="Usuários">
+                            <p:menuitem rendered="#{!loginController.podeCadastrar}" value="Listar todos os usuários" action="#{usuarioController.prepareList()}" icon="ui-icon-document" />
+                            <p:menuitem rendered="#{loginController.podeCadastrar}" value="Listar todos os usuários" action="#{usuarioController.prepareListAutorizada()}" icon="ui-icon-document" />
+                            <p:menuitem rendered="#{loginController.podeCadastrar}" value="Cadastrar um usuário"  icon="ui-icon-disk" action="#{usuarioController.prepareCreate()}"/>
+                            
+                        </p:submenu>
+
+                    </p:panelMenu>
+
+
+
+                    <p:dialog id="dialog" header="Fazer Login" widgetVar="dlg" resizable="false">  
+
+                        <h:panelGrid columns="2" id="grid">  
+
+                            <h:outputLabel id="output1" style="position: relative; right: 10px" value="Email : *"/>  
+                            <p:inputText style="position: relative; right: 115px" value="#{loginController.username}"
+                                         id="txt_title" 
+                                         title="Você deve inserir um e-mail válido com pelo menos 2 caracteres">
+
+                            </p:inputText>
+                            <p:tooltip for="txt_title" showEvent="focus" hideEvent="blur" id="tooltip1"/> 
+                            <br/>
+
+                            <h:outputLabel id="output2" style="position: relative; right: 10px" value="Senha : *"/>  
+                            <h:inputSecret style="position: relative; right: 115px" value="#{loginController.password}"
+                                           id="txt_title2" 
+                                           title="Você deve inserir uma senha com pelo menos 2 caracteres">
+
+                            </h:inputSecret>
+                            <p:tooltip for="txt_title2" showEvent="focus" hideEvent="blur" id="tooltip2"/> 
+                            <br/>
+                            <p:commandButton id="botaoLogin" style="width: 180px; height: 40px; font-size: small; position: relative; left: 90px" 
+                                             value="Fazer login" actionListener="#{loginController.fazerLogin}"
+                                             icon="ui-icon-disk" oncomplete="handleLoginRequest(xhr, status, args)}" action="#{loginController.page2()}"> 
+                            </p:commandButton>
+
+                        </h:panelGrid>
+
+                    </p:dialog>
+                    
+
+                </p:panel>
+                
+                <p:commandButton id="botaoLogout" style="position: relative; left: 1250px; bottom: 300px" value="Logout" icon="ui-icon-closethick"
+                                 actionListener="#{loginController.doLogout()}" update="growl" action="#{loginController.page()}"/>
+                
+                           
+                
+                
+            </h:form>
+            <script type="text/javascript">
+                function handleLoginRequest(xhr, status, args) {
+                    if (args.validationFailed || !args.loggedIn) {
+                        dlg.jq.effect("shake", {times: 5}, 100);
+                    }
+                    else {
+                        dlg.hide();
+                        $('#loginLink').fadeOut();
+                    }
+                }
+            </script>  
+        </f:view>
+
+    </h:body>
+</html>
+
